@@ -1,0 +1,22 @@
+{
+  "name": "nitrogeneratorbot",
+  "version": "1.0.0",
+  "description": "![botIcon](botIcon.png)",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "startCmd": "start start.bat",
+    "startBash": "start start.bash",
+    "npm_install": "npm i"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Zamur650/NitroGeneratorBot.git"
+  },
+  "author": "Zamur",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Zamur650/NitroGeneratorBot/issues"
+  },
+  "homepage": "https://github.com/Zamur650/NitroGeneratorBot#readme"
+}
