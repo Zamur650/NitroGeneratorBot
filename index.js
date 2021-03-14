@@ -47,7 +47,7 @@ client.on('message', async message => {
       )
       .setFooter(`От ${developer}`, developerImage);
     message.channel.send(Embed);
-  } else if (command === 'password') {
+  } else if (command === 'nitro') {
     let charset = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
     let password = '';
     for (let i = 0, n = charset.length; i < 16; ++i) {
@@ -61,64 +61,17 @@ client.on('guildMemberAdd', async member => {
   const channel = member.guild.channels.cache.find(ch => ch.name === welcomeChannel);
   if (!channel) return;
 
-  const canvas = Canvas.createCanvas(700, 250);
-  const ctx = canvas.getContext('2d');
+  const Embed = new Discord.MessageEmbed()
+    .setColor(botColor)
+    .setTitle(`Помощь`)
+    .setDescription(`Помощь: ${message.guild.name}`)
+    .setThumbnail(client.user.displayAvatarURL({ dynamic: true }))
+    .setFooter(`К серверу ${developer}`);
+  message.channel.send(Embed);
 
-  const background = await Canvas.loadImage(backgroundWelcomeImageName);
-  ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
-
-  ctx.strokeRect(0, 0, canvas.width, canvas.height);
-
-  ctx.font = '35px Arial';
-  ctx.fillStyle = '#ffffff';
-  ctx.fillText('Привет,', canvas.width / 2.5, canvas.height / 3.5);
-
-  ctx.fillStyle = '#ffffff';
-  ctx.fillText(`${member.displayName}!`, canvas.width / 2.5, canvas.height / 1.8);
-
-  ctx.beginPath();
-  ctx.arc(125, 125, 100, 0, Math.PI * 2, true);
-  ctx.closePath();
-  ctx.clip();
-
-  const avatar = await Canvas.loadImage(member.user.displayAvatarURL({ format: 'jpg' }));
+  
+  ctx.fillText(`Привет,${member.displayName}!`);member.user.displayAvatarURL()
   ctx.drawImage(avatar, 25, 25, 200, 200);
-
-  const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'welcome-image.png');
-
-  channel.send(attachment);
-});
-
-client.on('guildMemberRemove', async member => {
-  const channel = member.guild.channels.cache.find(ch => ch.name === welcomeChannel);
-  if (!channel) return;
-
-  const canvas = Canvas.createCanvas(700, 250);
-  const ctx = canvas.getContext('2d');
-
-  const background = await Canvas.loadImage(backgroundWelcomeImageName);
-  ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
-
-  ctx.strokeRect(0, 0, canvas.width, canvas.height);
-
-  ctx.font = '35px Arial';
-  ctx.fillStyle = '#ffffff';
-  ctx.fillText('Пока,', canvas.width / 2.5, canvas.height / 3.5);
-
-  ctx.fillStyle = '#ffffff';
-  ctx.fillText(`${member.displayName}!`, canvas.width / 2.5, canvas.height / 1.8);
-
-  ctx.beginPath();
-  ctx.arc(125, 125, 100, 0, Math.PI * 2, true);
-  ctx.closePath();
-  ctx.clip();
-
-  const avatar = await Canvas.loadImage(member.user.displayAvatarURL({ format: 'jpg' }));
-  ctx.drawImage(avatar, 25, 25, 200, 200);
-
-  const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'welcome-image.png');
-
-  channel.send(attachment);
 });
 
 client.once('reconnecting', () => {

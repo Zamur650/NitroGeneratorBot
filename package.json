@@ -18,5 +18,10 @@
   "bugs": {
     "url": "https://github.com/Zamur650/NitroGeneratorBot/issues"
   },
-  "homepage": "https://github.com/Zamur650/NitroGeneratorBot#readme"
+  "homepage": "https://github.com/Zamur650/NitroGeneratorBot#readme",
+  "dependencies": {
+    "canvas": "^2.6.1",
+    "discord": "^0.8.2",
+    "discord.js": "^12.5.1"
+  }
 }
